@@ -1,0 +1,143 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "test app API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/catalog": {
+            "get": {
+                "tags": [
+                    "Catalog"
+                ],
+                "summary": "Get catalog",
+                "description": "Get catalog",
+                "operationId": "cae6e1a009cf624416067df6671aae70",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "success": {
+                                            "type": "string",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Category"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Category": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Категория"
+                    },
+                    "order": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "subcategories": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": 2
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Категория 1"
+                                },
+                                "order": {
+                                    "type": "integer",
+                                    "example": 0
+                                },
+                                "subcategories": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                },
+                                "products": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Product"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Product": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "name"
+                    },
+                    "price": {
+                        "type": "object",
+                        "example": 10000
+                    },
+                    "order": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-29T13:16:48.000000Z"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-29T13:16:48.000000Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Catalog",
+            "description": "Catalog"
+        }
+    ]
+}
